@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Flight Fare Prediction</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+</head>
+<body>
+    <div class="container">
+        <h1 class="mt-5">Flight Fare Prediction</h1>
+        <form action="/predict" method="post" class="mt-4">
+            <div class="form-group">
+                <label for="departure_time">Departure Time</label>
+                <select class="form-control" id="departure_time" name="departure_time">
+                    <option value="Early_Morning">Early Morning</option>
+                    <option value="Morning">Morning</option>
+                    <option value="Afternoon">Afternoon</option>
+                    <option value="Evening">Evening</option>
+                    <option value="Night">Night</option>
+                    <option value="Late_Night">Late Night</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label for="arrival_time">Arrival Time</label>
+                <select class="form-control" id="arrival_time" name="arrival_time">
+                    <option value="Early_Morning">Early Morning</option>
+                    <option value="Morning">Morning</option>
+                    <option value="Afternoon">Afternoon</option>
+                    <option value="Evening">Evening</option>
+                    <option value="Night">Night</option>
+                    <option value="Late_Night">Late Night</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label for="stops">Stops</label>
+                <input type="number" class="form-control" id="stops" name="stops" min="0" max="2" required>
+            </div>
+            <div class="form-group">
+                <label for="duration">Duration (hours)</label>
+                <input type="number" class="form-control" id="duration" name="duration" step="0.1" required>
+            </div>
+            <div class="form-group">
+                <label for="flight_class">Flight Class</label>
+                <select class="form-control" id="flight_class" name="flight_class">
+                    <option value="Economy">Economy</option>
+                    <option value="Business">Business</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label for="airline">Airline</label>
+                <select class="form-control" id="airline" name="airline">
+                    <option value="Air_India">Air India</option>
+                    <option value="Vistara">Vistara</option>
+                    <option value="Indigo">Indigo</option>
+                    <option value="AirAsia">AirAsia</option>
+                    <option value="SpiceJet">SpiceJet</option>
+                    <option value="GO_FIRST">GO FIRST</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label for="source">Source City</label>
+                <select class="form-control" id="source" name="source">
+                    <option value="Delhi">Delhi</option>
+                    <option value="Kolkata">Kolkata</option>
+                    <option value="Mumbai">Mumbai</option>
+                    <option value="Chennai">Chennai</option>
+                    <option value="Bangalore">Bangalore</option>
+                    <option value="Hyderabad">Hyderabad</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label for="destination">Destination City</label>
+                <select class="form-control" id="destination" name="destination">
+                    <option value="Delhi">Delhi</option>
+                    <option value="Kolkata">Kolkata</option>
+                    <option value="Mumbai">Mumbai</option>
+                    <option value="Chennai">Chennai</option>
+                    <option value="Bangalore">Bangalore</option>
+                    <option value="Hyderabad">Hyderabad</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label for="days_left">Days Left</label>
+                <input type="number" class="form-control" id="days_left" name="days_left" min="0" max="49" required>
+            </div>
+            <div class="form-group">
+                <label for="model">Model</label>
+                <select id="model" name="model">
+                    <option value="gpt-CatBoost">"gpt-CatBoost (recommended)</option>
+                    <option value="gpt-XGB">gpt-XGB</option>
+                    <option value="gpt-DT">gpt-DT</option>
+                    <option value="gpt-RF">gpt-RF</option>
+                    <option value="gpt-Lasso">gpt-Lasso</option>
+                    <option value="gpt-Ridge">gpt-Ridge</option>
+                    <option value="gpt-LR">gpt-LR</option>
+                </select>
+            </div>
+            <button type="submit" class="btn btn-primary">Predict</button>
+        </form>
+        <br>
+        {% if prediction_text %}
+            <div class="alert alert-info" role="alert">
+                {{ prediction_text }}
+            </div>
+        {% endif %}
+    </div>
+</body>
+</html>
